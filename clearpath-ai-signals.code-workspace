@@ -1,0 +1,24 @@
+{
+  "folders": [
+    {
+      "path": "frontend",
+      "name": "🎨 Frontend"
+    },
+    {
+      "path": "backend",
+      "name": "⚙️ Backend"
+    },
+    {
+      "path": "cv-service",
+      "name": "🤖 CV Service"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/__pycache__": true,
+      "**/venv": true,
+      "**/.git": true
+    }
+  }
+}

@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Build outputs
+build/
+dist/
+*.pyc
+
+# Uploads
+uploads/
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Testing
+coverage/
+.pytest_cache/
+
+# Model files
+*.pt
+*.pth
+*.onnx
+
+# Temporary files
+tmp/
+temp/
