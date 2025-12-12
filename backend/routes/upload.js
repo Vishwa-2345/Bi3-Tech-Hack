@@ -6,6 +6,7 @@ const fs = require('fs');
 const axios = require('axios');
 const FormData = require('form-data');
 const Simulation = require('../models/Simulation');
+const { verifyToken } = require('../middleware/auth');
 
 // Configure multer for video uploads
 const storage = multer.diskStorage({
@@ -39,14 +40,14 @@ const upload = multer({
 });
 
 // Upload videos endpoint
-router.post('/upload-videos', upload.fields([
+router.post('/upload-videos', verifyToken, upload.fields([
   { name: 'north', maxCount: 1 },
   { name: 'south', maxCount: 1 },
   { name: 'east', maxCount: 1 },
   { name: 'west', maxCount: 1 }
 ]), async (req, res) => {
   try {
-    console.log('📹 Received video upload request');
+    console.log('📹 Received video upload request from user:', req.user.name);
 
     // Validate all files are present
     const directions = ['north', 'south', 'east', 'west'];
@@ -71,6 +72,7 @@ router.post('/upload-videos', upload.fields([
 
     // Create simulation record
     const simulation = new Simulation({
+      userId: req.user._id,
       sessionId,
       videos: videoPaths,
       status: 'processing',
@@ -113,6 +115,8 @@ router.post('/upload-videos', upload.fields([
     } catch (error) {
       console.error('❌ Error sending to CV service:', error.message);
     }
+
+    
 
     // Return success immediately
     res.json({

@@ -6,6 +6,8 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/database');
 const uploadRoutes = require('./routes/upload');
 const simulationRoutes = require('./routes/simulation');
+const logsRoutes = require('./routes/logs');
+const authRoutes = require('./routes/auth');
 
 dotenv.config();
 
@@ -32,6 +34,8 @@ app.set('io', io);
 // Routes
 app.use('/api', uploadRoutes);
 app.use('/api/simulation', simulationRoutes);
+app.use('/api/logs', logsRoutes);
+app.use('/api/auth', authRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
